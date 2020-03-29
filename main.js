@@ -20,7 +20,7 @@ function runSimulation(){
             circle.infected = false;
             circle.infectedTimestamp;
             circle.immune = false;
-            circle.radius = 4;
+            circle.radius = 1;
             circle.x = Math.floor(Math.random() * width);
             circle.y = Math.floor(Math.random() * height);
             circle.vector = {};
