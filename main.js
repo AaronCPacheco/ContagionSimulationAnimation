@@ -1,7 +1,8 @@
 function runSimulation(){
     var distancing = document.getElementById("distancing").value;
+    var density = document.getElementyById("density").value;
     console.log(distancing);
-    window.location = ("/ContagionSimulationAnimation/simulation.html?distancing="+distancing);
+    window.location = ("/ContagionSimulationAnimation/simulation.html?distancing="+distancing+"&density="+density);
 }
 function start(){
     var canvas,width,height,ctx,circles,lockedCircles;
@@ -12,16 +13,23 @@ function start(){
         var queryString = window.location.search;
         var urlParams = new URLSearchParams(queryString);
         var distancing = urlParams.get('distancing');
-        console.log(distancing);
+        var density = urlParams.get("density");
         canvas = document.querySelector('.myCanvas');
         width = canvas.width = window.innerWidth;
         height = canvas.height = window.innerHeight;
+        var denominator = Math.floor(1500*(density/100));
+        numberBalls = Math.floor((width*height)/15000);
+        console.log(numberBalls);
+        movingBalls = Math.floor(numberBalls*((100-distancing)*.01));
+        console.log(movingBalls);
+        stillBalls = numberBalls - movingBalls;
+        console.log(stillBalls);
         ctx = canvas.getContext('2d');
         //ctx.fillStyle = 'rgb(0,0,0)';
         //ctx.fillRect(0, 0, width, height);
         circles = [];
 
-        for(var i = 0; i < 100-distancing; i++){
+        for(var i = 0; i < movingBalls; i++){
             var circle = {};
             circle.infected = false;
             circle.infectedTimestamp;
@@ -35,7 +43,7 @@ function start(){
             circles.push(circle);
         }
 
-        for(var i = 0; i < distancing; i++){
+        for(var i = 0; i < stillBalls; i++){
             var circle = {};
             circle.infected = false;
             circle.infectedTimestamp;
