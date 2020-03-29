@@ -29,9 +29,9 @@ function init(){
     circles[0].infected = true;
 }
 
-function update(progress){
+function update(progress,timestamp){
     for(circ in circles){
-        if(progress - circles[circ].infectedTimestamp > 20){
+        if(timestamp - circles[circ].infectedTimestamp > 20){
             circles[circ].infected = false;
             circles[circ].immune = true;
         }
@@ -65,11 +65,11 @@ function update(progress){
                 if(circles[i].infected || circles[j].infected){
                     if(!circles[i].immune && !circles[i].infected){
                         circles[i].infected = true;
-                        circles[i].infectedTimestamp = progress;
+                        circles[i].infectedTimestamp = timestamp;
                     } 
                     if(!circles[j].immune && !circles[j].infected){
                         circles[j].infected = true;
-                        circles[j].infectedTimestamp = progress;
+                        circles[j].infectedTimestamp = timestamp;
                     }
                 }
             }
@@ -101,7 +101,7 @@ function draw(){
 function loop(timestamp){
     console.log('mainLoop');
     var progress = timestamp - lastRender;       
-    update(progress);
+    update(progress,timestamp);
     draw();
     lastRender = timestamp;
     window.requestAnimationFrame(loop);
