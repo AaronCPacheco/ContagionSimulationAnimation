@@ -6,7 +6,7 @@ function runSimulation(){
 }
 function onChangeDensity(){
     var density = document.getElementById("density").value;
-    var densityOut = document.getElementById("density-out");
+    var densityOut = document.getElementById("densityout");
     densityOut.innerHTML = density+"%";
 }
 function start(){
