@@ -17,7 +17,7 @@ function getUrlParam(parameter, defaultvalue){
         }
     return urlparameter;
 }
-function onload(){
+function start(){
     var canvas,width,height,ctx,circles,lockedCircles;
     
     init();
