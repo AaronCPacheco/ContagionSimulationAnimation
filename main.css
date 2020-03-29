@@ -1,7 +1,6 @@
 body {
     margin: 0;
     overflow: hidden;
-    font-size: 16px;
 }
 canvas {
     background: #000;
@@ -10,15 +9,7 @@ canvas {
 #config {
     padding: 10px 0 10px 0;
     width: 100%;
-    font-size: 1em;
     display: block;
-}
-#config select {
-    font-size: 1em;
-
-}
-#config button {
-    font-size: 1em;
 }
 #simulation {
     width: 100%;
