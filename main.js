@@ -49,7 +49,7 @@ function update(progress,timestamp){
     }
     
     for(circ in circles){
-        if(timestamp - circles[circ].infectedTimestamp > 30000){
+        if(timestamp - circles[circ].infectedTimestamp > 12500){
             circles[circ].infected = false;
             circles[circ].immune = true;
         }
