@@ -12,7 +12,7 @@ function init(){
     //ctx.fillRect(0, 0, width, height);
     circles = [];
 
-    for(var i = 0; i < 100; i++){
+    for(var i = 0; i < 50; i++){
         var circle = {};
         circle.infected = false;
         circle.infectedTimestamp;
@@ -23,6 +23,20 @@ function init(){
         circle.vector = {};
         circle.vector.x = (Math.random() - 0.5)/2;
         circle.vector.y = (Math.random() - 0.5)/2;
+        circles.push(circle);
+    }
+
+    for(var i = 0; i < 50; i++){
+        var circle = {};
+        circle.infected = false;
+        circle.infectedTimestamp;
+        circle.immune = false;
+        circle.radius = 4;
+        circle.x = Math.floor(Math.random() * width);
+        circle.y = Math.floor(Math.random() * height);
+        circle.vector = {};
+        circle.vector.x = 0;
+        circle.vector.y = 0;
         circles.push(circle);
     }
 
