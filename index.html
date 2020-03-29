@@ -5,7 +5,7 @@
     <meta charset="uft-8">
     <meta name="viewport" content="width=device-width, user-scalable=no" />
     <title>Contagion Simulation Animation</title>
-    <link rel="stylesheet" href="main.css?v0.0015" />
+    <link rel="stylesheet" href="main.css?v0.0016" />
 </head>
 <body>
     <div id="config">
@@ -20,9 +20,12 @@
         </div>
         <div class="form-section">
             <label for="density">Population Density (1% - 200%)</label>
+            <br>
             <input type="range" min="1" max="200" value="100" class="slider" id="density">
         </div>
-        <button onclick="runSimulation()">Try it</button>
+        <div class="form-section">
+            <button onclick="runSimulation()">Try it</button>
+        </div>
     </div>
     <script src="main.js?v=0.018"></script>
 </body>
