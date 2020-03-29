@@ -1,12 +1,30 @@
 function runSimulation(){
+    var distancing = document.getElementById("distancing").value;
+    console.log(distancing);
+    window.location = ("/simulation.html?distancing="+distancing);
+}
+function getUrlVars() {
+    var vars = {};
+    var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+        vars[key] = value;
+    });
+    return vars;
+}
+function getUrlParam(parameter, defaultvalue){
+    var urlparameter = defaultvalue;
+    if(window.location.href.indexOf(parameter) > -1){
+        urlparameter = getUrlVars()[parameter];
+        }
+    return urlparameter;
+}
+function onload(){
     var canvas,width,height,ctx,circles,lockedCircles;
-
+    
     init();
-
+    
     function init(){
         console.log('init');
-        var distancing = document.getElementById("distancing").value;
-        console.log(distancing);
+        var distancing = getUrlParam(distancing,"0");
         canvas = document.querySelector('.myCanvas');
         width = canvas.width = window.innerWidth;
         height = canvas.height = window.innerHeight;
