@@ -2,7 +2,6 @@ function runSimulation(){
     var distancing = document.getElementById("distancing").value;
     var density = document.getElementById("density").value;
     var dotSize = document.getElementById("dotsize").value;
-    console.log(distancing);
     window.location = ("/ContagionSimulationAnimation/simulation.html?distancing=" + distancing
         + "&density=" + density + "&dotsize=" + dotSize);
 }
@@ -26,17 +25,14 @@ function start(){
         var urlParams = new URLSearchParams(queryString);
         var distancing = urlParams.get('distancing');
         var density = urlParams.get('density');
-        var dotSize = urlParams.get('dotsize');
+        var dotSize = Number(urlParams.get('dotsize'));
         canvas = document.querySelector('.myCanvas');
         width = canvas.width = window.innerWidth;
         height = canvas.height = window.innerHeight;
         var denominator = Math.floor(15000/(density*.01));
         numberBalls = Math.floor((width*height)/denominator);
-        console.log(numberBalls);
         movingBalls = Math.floor(numberBalls*((100-distancing)*.01));
-        console.log(movingBalls);
         stillBalls = numberBalls - movingBalls;
-        console.log(stillBalls);
         ctx = canvas.getContext('2d');
         //ctx.fillStyle = 'rgb(0,0,0)';
         //ctx.fillRect(0, 0, width, height);
