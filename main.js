@@ -4,6 +4,11 @@ function runSimulation(){
     console.log(distancing);
     window.location = ("/ContagionSimulationAnimation/simulation.html?distancing="+distancing+"&density="+density);
 }
+function onChangeDensity(){
+    var density = document.getElementById("density").value;
+    var densityOut = document.getElementById("desnity-out");
+    densityOut.innerHTML = density+"%";
+}
 function start(){
     var canvas,width,height,ctx,circles,lockedCircles;
     

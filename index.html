@@ -19,14 +19,14 @@
             </select>
         </div>
         <div class="form-section">
-            <label for="density">Population Density (1% - 200%)</label>
+            <label for="density">Population Density<span id="density-out"></span></label>
             <br>
-            <input type="range" min="1" max="200" value="100" class="slider" id="density">
+            <input type="range" min="1" max="200" value="100" class="slider" id="density" onchange="onChangeDensity()">
         </div>
         <div class="form-section">
             <button onclick="runSimulation()">Try it</button>
         </div>
     </div>
-    <script src="main.js?v=0.019"></script>
+    <script src="main.js?v=0.020"></script>
 </body>
 </html>
