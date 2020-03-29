@@ -4,10 +4,22 @@
 <head>
     <meta charset="uft-8">
     <title>Contagion Simulation Animation</title>
-    <link rel="stylesheet" href="main.css" />
+    <link rel="stylesheet" href="main.css?v0.003" />
 </head>
 <body>
-    <canvas class="myCanvas"/>
-    <script src="main.js?v=0.05"></script>
+    <div id="config">
+        <label for="distancing">Social Distancing:</label>
+        <select id="distancing">
+            <option value="0">0%</option>
+            <option value="25">25%</option>
+            <option value="50">50%</option>
+            <option value="75">75%</option>
+        </select>
+        <button onclick="runSimulation()">Try it</button>
+    </div>
+    <div id="simulation">
+        <canvas class="myCanvas"/>
+        <script src="main.js?v=0.07"></script>
+    <div>
 </body>
 </html>
