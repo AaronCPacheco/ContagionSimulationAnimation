@@ -1,4 +1,4 @@
-var canvas,width,height,ctx,circles;
+var canvas,width,height,ctx,circles,lockedCircles;
 
 init();
 
@@ -15,12 +15,11 @@ function init(){
     for(var i = 0; i < 100; i++){
         var circle = {};
         circle.infected = false;
-        circle.radius = 3;
+        circle.infectedTimestamp;
+        circle.immune = false;
+        circle.radius = 4;
         circle.x = Math.floor(Math.random() * width);
         circle.y = Math.floor(Math.random() * height);
-        //circle.r = Math.floor(Math.random() * 255);
-        //circle.g = Math.floor(Math.random() * 255);
-        //circle.b = Math.floor(Math.random() * 255);
         circle.vector = {};
         circle.vector.x = (Math.random() - 0.5)/2;
         circle.vector.y = (Math.random() - 0.5)/2;
@@ -28,12 +27,14 @@ function init(){
     }
 
     circles[0].infected = true;
-
-    console.log(circles);
 }
 
 function update(progress){
     for(circ in circles){
+        if(progress - circles[circ].infectedTimestamp > 20){
+            circles[circ].infected = false;
+            circles[circ].immune = true;
+        }
         circles[circ].x += circles[circ].vector.x * progress;
         circles[circ].y += circles[circ].vector.y * progress;
         if(circles[circ].x + circles[circ].radius >= width || circles[circ].x - circles[circ].radius <= 0){
@@ -62,8 +63,14 @@ function update(progress){
                 circles[j].x += circles[j].vector.x * progress;
                 circles[j].y += circles[j].vector.y * progress;
                 if(circles[i].infected || circles[j].infected){
-                    circles[i].infected = true;
-                    circles[j].infected = true;
+                    if(!circles[i].immune && !circles[i].infected){
+                        circles[i].infected = true;
+                        circles[i].infectedTimestamp = progress;
+                    } 
+                    if(!circles[j].immune && !circles[j].infected){
+                        circles[j].infected = true;
+                        circles[j].infectedTimestamp = progress;
+                    }
                 }
             }
         }
@@ -87,7 +94,7 @@ function draw(){
     ctx.clearRect(0, 0, width, height);
     for(circ in circles){
         console.log(circles[circ]);
-        drawCircle(circles[circ].x,circles[circ].y,circles[circ].radius,circles[circ].infected);
+        drawCircle(circles[circ].x,circles[circ].y,circles[circ].radius,circles[circ].infected,circles[circ].immune);
     }
 }
 
@@ -100,8 +107,10 @@ function loop(timestamp){
     window.requestAnimationFrame(loop);
 }
 
-function drawCircle(x,y,radius,infected){
-    if(infected){
+function drawCircle(x,y,radius,infected,immune){
+    if(immune){
+        ctx.fillStyle = 'rgb(0,0,255)';
+    }else if(infected){
         ctx.fillStyle = 'rgb(255,0,0)';
     }else{
         ctx.fillStyle = 'rgb(255,255,255)';
