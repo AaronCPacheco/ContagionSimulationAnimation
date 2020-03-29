@@ -1,7 +1,7 @@
 function runSimulation(){
     var distancing = document.getElementById("distancing").value;
     console.log(distancing);
-    window.location = ("/simulation.html?distancing="+distancing);
+    window.location = ("/ContagionSimulationAnimation/simulation.html?distancing="+distancing);
 }
 function getUrlVars() {
     var vars = {};
