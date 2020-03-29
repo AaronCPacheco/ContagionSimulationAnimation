@@ -1,13 +1,20 @@
 function runSimulation(){
     var distancing = document.getElementById("distancing").value;
     var density = document.getElementById("density").value;
+    var dotSize = document.getElementById("dotsize").value;
     console.log(distancing);
-    window.location = ("/ContagionSimulationAnimation/simulation.html?distancing="+distancing+"&density="+density);
+    window.location = ("/ContagionSimulationAnimation/simulation.html?distancing=" + distancing
+        + "&density=" + density + "&dotsize=" + dotSize);
 }
 function onChangeDensity(){
     var density = document.getElementById("density").value;
     var densityOut = document.getElementById("densityout");
     densityOut.innerHTML = density+"%";
+}
+function onChangeDotSize(){
+    var dotSize = document.getElementById("dotsize").value;
+    var dotSizeOut = document.getElementById("dotsizeout");
+    dotSizeOut.innerHTML = dotSize;
 }
 function start(){
     var canvas,width,height,ctx,circles,lockedCircles;
@@ -19,6 +26,7 @@ function start(){
         var urlParams = new URLSearchParams(queryString);
         var distancing = urlParams.get('distancing');
         var density = urlParams.get('density');
+        var dotSize = urlParams.get('dotsize');
         canvas = document.querySelector('.myCanvas');
         width = canvas.width = window.innerWidth;
         height = canvas.height = window.innerHeight;
@@ -39,7 +47,7 @@ function start(){
             circle.infected = false;
             circle.infectedTimestamp;
             circle.immune = false;
-            circle.radius = 4;
+            circle.radius = dotSize;
             circle.x = Math.floor(Math.random() * width);
             circle.y = Math.floor(Math.random() * height);
             circle.vector = {};
@@ -53,7 +61,7 @@ function start(){
             circle.infected = false;
             circle.infectedTimestamp;
             circle.immune = false;
-            circle.radius = 4;
+            circle.radius = dotSize;
             circle.x = Math.floor(Math.random() * width);
             circle.y = Math.floor(Math.random() * height);
             circle.vector = {};
