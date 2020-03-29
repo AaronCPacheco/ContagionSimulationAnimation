@@ -29,7 +29,7 @@ function start(){
         canvas = document.querySelector('.myCanvas');
         width = canvas.width = window.innerWidth;
         height = canvas.height = window.innerHeight;
-        var denominator = Math.floor(15000/(density*.01));
+        var denominator = Math.floor(10000/(density*.01));
         numberBalls = Math.floor((width*height)/denominator);
         movingBalls = Math.floor(numberBalls*((100-distancing)*.01));
         stillBalls = numberBalls - movingBalls;
@@ -44,6 +44,7 @@ function start(){
             circle.infectedTimestamp;
             circle.immune = false;
             circle.radius = dotSize;
+            circle.mass = 0.01;
             circle.x = Math.floor(Math.random() * width);
             circle.y = Math.floor(Math.random() * height);
             circle.vector = {};
@@ -58,6 +59,7 @@ function start(){
             circle.infectedTimestamp;
             circle.immune = false;
             circle.radius = dotSize;
+            circle.mass = 1.0;
             circle.x = Math.floor(Math.random() * width);
             circle.y = Math.floor(Math.random() * height);
             circle.vector = {};
@@ -94,10 +96,10 @@ function start(){
         for(var i = 0; i < circles.length; i++){
             for(var j = circles.length-1; j > i; j--){
                 if(isCollision(circles[i],circles[j])){
-                    ix = circles[j].vector.x;
-                    iy = circles[j].vector.y;
-                    jx = circles[i].vector.x;
-                    jy = circles[i].vector.y;
+                    ix = (circles[i].vector.x * (circles[i].mass - circles[j].mass) + (2 * circles[j].mass * circles[j].vector.x)) / (circles[i].mass + circles[j].mass);
+                    iy = (circles[i].vector.y * (circles[i].mass - circles[j].mass) + (2 * circles[j].mass * circles[j].vector.y)) / (circles[i].mass + circles[j].mass);
+                    jx = (circles[j].vector.x * (circles[j].mass - circles[i].mass) + (2 * circles[i].mass * circles[i].vector.x)) / (circles[j].mass + circles[i].mass);
+                    jy = (circles[j].vector.y * (circles[j].mass - circles[i].mass) + (2 * circles[i].mass * circles[i].vector.y)) / (circles[j].mass + circles[i].mass);
                     circles[i].vector.x = ix;
                     circles[i].vector.y = iy;
                     circles[j].vector.x = jx;
