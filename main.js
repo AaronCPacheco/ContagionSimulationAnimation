@@ -13,12 +13,12 @@ function start(){
         var queryString = window.location.search;
         var urlParams = new URLSearchParams(queryString);
         var distancing = urlParams.get('distancing');
-        var density = urlParams.get("density");
+        var density = urlParams.get('density');
         canvas = document.querySelector('.myCanvas');
         width = canvas.width = window.innerWidth;
         height = canvas.height = window.innerHeight;
         var denominator = Math.floor(1500*(density/100));
-        numberBalls = Math.floor((width*height)/15000);
+        numberBalls = Math.floor((width*height)/denominator);
         console.log(numberBalls);
         movingBalls = Math.floor(numberBalls*((100-distancing)*.01));
         console.log(movingBalls);
