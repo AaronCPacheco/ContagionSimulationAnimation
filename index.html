@@ -9,18 +9,21 @@
 </head>
 <body>
     <div id="config">
-        <label for="distancing">Social Distancing:</label>
-        <select id="distancing">
-            <option value="0">0%</option>
-            <option value="25">25%</option>
-            <option value="50">50%</option>
-            <option value="75">75%</option>
-        </select>
-        <br>
-        <input type="range" min="1" max="200" value="100" class="slider" id="density">
-        <br>
+        <div>
+            <label for="distancing">Social Distancing:</label>
+            <select id="distancing">
+                <option value="0">0%</option>
+                <option value="25">25%</option>
+                <option value="50">50%</option>
+                <option value="75">75%</option>
+            </select>
+        </div>
+        <div>
+            <label for="density">Population Density (1% - 200%)</label>
+            <input type="range" min="1" max="200" value="100" class="slider" id="density">
+        </div>
         <button onclick="runSimulation()">Try it</button>
     </div>
-    <script src="main.js?v=0.017"></script>
+    <script src="main.js?v=0.018"></script>
 </body>
 </html>

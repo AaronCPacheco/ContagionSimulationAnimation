@@ -1,6 +1,6 @@
 function runSimulation(){
     var distancing = document.getElementById("distancing").value;
-    var density = document.getElementyById("density").value;
+    var density = document.getElementById("density").value;
     console.log(distancing);
     window.location = ("/ContagionSimulationAnimation/simulation.html?distancing="+distancing+"&density="+density);
 }
