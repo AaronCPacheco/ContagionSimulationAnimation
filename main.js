@@ -2,19 +2,12 @@ function runSimulation(){
     var distancing = document.getElementById("distancing").value;
     var density = document.getElementById("density").value;
     console.log(distancing);
-    window.location = ("/ContagionSimulationAnimation/simulation.html?distancing=" + distancing
-        + "&density=" + density
-        + "&size=" + size);
+    window.location = ("/ContagionSimulationAnimation/simulation.html?distancing="+distancing+"&density="+density);
 }
 function onChangeDensity(){
     var density = document.getElementById("density").value;
     var densityOut = document.getElementById("densityout");
     densityOut.innerHTML = density+"%";
-}
-function onChangeSize(){
-    var size = document.getElementById("size").value;
-    var sizeOut = document.getElementById("sizeout");
-    sizeOut.innerHTML = size;
 }
 function start(){
     var canvas,width,height,ctx,circles,lockedCircles;
@@ -26,7 +19,6 @@ function start(){
         var urlParams = new URLSearchParams(queryString);
         var distancing = urlParams.get('distancing');
         var density = urlParams.get('density');
-        var circleSize = urlParams.get('size');
         canvas = document.querySelector('.myCanvas');
         width = canvas.width = window.innerWidth;
         height = canvas.height = window.innerHeight;
@@ -47,7 +39,7 @@ function start(){
             circle.infected = false;
             circle.infectedTimestamp;
             circle.immune = false;
-            circle.radius = circleSize;
+            circle.radius = 4;
             circle.x = Math.floor(Math.random() * width);
             circle.y = Math.floor(Math.random() * height);
             circle.vector = {};
@@ -61,7 +53,7 @@ function start(){
             circle.infected = false;
             circle.infectedTimestamp;
             circle.immune = false;
-            circle.radius = circleSize;
+            circle.radius = 4;
             circle.x = Math.floor(Math.random() * width);
             circle.y = Math.floor(Math.random() * height);
             circle.vector = {};
@@ -154,7 +146,7 @@ function start(){
 
     function drawCircle(x,y,radius,infected,immune){
         if(immune){
-            ctx.fillStyle = 'rgb(0,255,0)';
+            ctx.fillStyle = 'rgb(0,0,255)';
         }else if(infected){
             ctx.fillStyle = 'rgb(255,0,0)';
         }else{
