@@ -3,28 +3,16 @@ function runSimulation(){
     console.log(distancing);
     window.location = ("/ContagionSimulationAnimation/simulation.html?distancing="+distancing);
 }
-function getUrlVars() {
-    var vars = {};
-    var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
-        vars[key] = value;
-    });
-    return vars;
-}
-function getUrlParam(parameter, defaultvalue){
-    var urlparameter = defaultvalue;
-    if(window.location.href.indexOf(parameter) > -1){
-        urlparameter = getUrlVars()[parameter];
-        }
-    return urlparameter;
-}
 function start(){
     var canvas,width,height,ctx,circles,lockedCircles;
     
     init();
     
     function init(){
-        console.log('init');
-        var distancing = getUrlParam(distancing,"0");
+        var queryString = window.location.search;
+        var urlParams = new URLSearchParams(queryString);
+        var distancing = urlParams.get('distancing');
+        console.log(distancing);
         canvas = document.querySelector('.myCanvas');
         width = canvas.width = window.innerWidth;
         height = canvas.height = window.innerHeight;
@@ -129,16 +117,13 @@ function start(){
     }
 
     function draw(){
-        console.log('draw');
         ctx.clearRect(0, 0, width, height);
         for(circ in circles){
-            console.log(circles[circ]);
             drawCircle(circles[circ].x,circles[circ].y,circles[circ].radius,circles[circ].infected,circles[circ].immune);
         }
     }
 
     function loop(timestamp){
-        console.log('mainLoop');
         var progress = timestamp - lastRender;       
         update(progress,timestamp);
         draw();
