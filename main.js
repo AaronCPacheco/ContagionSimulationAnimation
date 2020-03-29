@@ -22,7 +22,7 @@ function start(){
         canvas = document.querySelector('.myCanvas');
         width = canvas.width = window.innerWidth;
         height = canvas.height = window.innerHeight;
-        var denominator = Math.floor(150*density);
+        var denominator = Math.floor(15000/(density-100));
         numberBalls = Math.floor((width*height)/denominator);
         console.log(numberBalls);
         movingBalls = Math.floor(numberBalls*((100-distancing)*.01));
