@@ -30,8 +30,12 @@ function init(){
 }
 
 function update(progress,timestamp){
+    if(!circles[0].infectedTimestamp){
+        circles[0].infectedTimestamp = timestamp;
+    }
+    
     for(circ in circles){
-        if(timestamp - circles[circ].infectedTimestamp > 20){
+        if(timestamp - circles[circ].infectedTimestamp > 10000){
             circles[circ].infected = false;
             circles[circ].immune = true;
         }
